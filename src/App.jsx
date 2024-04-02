@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { sampleText } from "./utils";
-import { FaFreeCodeCamp } from "react-icons/fa";
-import { TfiFullscreen } from "react-icons/tfi";
-import PropTypes from "prop-types";
+import { Credit, TitleBar } from "./components";
 
 export default function App() {
 	const [content, setContent] = useState(sampleText);
@@ -28,7 +26,7 @@ export default function App() {
 	});
 
 	return (
-		<div className="flex flex-col items-center justify-start gap-4 py-12 h-full min-h-screen bg-[#87B5B5] text-black relative">
+		<div className="flex flex-col items-center justify-start gap-4 py-12 h-full min-h-screen text-black relative">
 			{!previewerFullScreen && (
 				<div
 					className={`w-3/4 md:w-2/5 flex flex-col items-stretch justify-start overflow-y-auto ${
@@ -62,21 +60,7 @@ export default function App() {
 					></div>
 				</div>
 			)}
+			<Credit />
 		</div>
 	);
 }
-
-function TitleBar({ title, handleClick }) {
-	return (
-		<div className="w-full h-min flex flex-row items-end justify-start gap-2 bg-[#4AA3A3] p-2 rounded-t-md font-extrabold">
-			<FaFreeCodeCamp />
-			<span className="inline-block align-bottom">{title}</span>
-			<TfiFullscreen className="ms-auto" onClick={handleClick} />
-		</div>
-	);
-}
-
-TitleBar.propTypes = {
-	title: PropTypes.string,
-	handleClick: PropTypes.func,
-};
